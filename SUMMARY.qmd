@@ -1,45 +1,53 @@
 ---
 title: "Summary of Steam Game Analysis"
 subtitle: "Final Project Report"
-Author: Fruity Robo
+author: "Fruity Robo"
 date: "2025-12-18"
-format:
-  html:
-    theme: cosmo
-    toc: true
-    number-sections: true
 ---
 
 ## 1. Introduction
 
 ### 1.1 Project Overview & Importance
-The video game industry has experienced explosive growth over the past decade, transforming into a dominant entertainment sector. [cite_start]As the largest digital PC gaming marketplace, **Steam** offers a unique and massive dataset that reflects real-time economic behavior and player preferences[cite: 17]. 
 
-However, this market is becoming increasingly saturated. For developers and publishers, understanding the "DNA of success" is no longer just about creativity—it requires data-driven strategy. [cite_start]This project aims to decode the underlying patterns of commercial success by synthesizing economic indicators (price, ownership), user engagement metrics (playtime, concurrent users), and content descriptors (game tags)[cite: 18].
+The video game industry has experienced explosive growth over the past decade, transforming into a dominant entertainment sector. As the largest digital PC gaming marketplace, **Steam** offers a unique and massive dataset that reflects real-time economic behavior and player preferences. 
+
+However, this market is becoming increasingly saturated. For developers and publishers, understanding the "DNA of success" is no longer just about creativity—it requires data-driven strategy. This project aims to decode the underlying patterns of commercial success by synthesizing economic indicators (price, ownership), user engagement metrics (playtime, concurrent users), and content descriptors (game tags).
 
 ### 1.2 Research Questions & Goals
+
 The primary question investigated in this project is:
-[cite_start]**What are the underlying structural patterns of commercial success in the Steam platform?** [cite: 20]
+
+**What are the underlying structural patterns of commercial success in the Steam platform?** 
 
 To answer this, our specific goals were to:
-1.  [cite_start]**Exploratory Analysis:** Visualize the distribution of core metrics (price, ownership, playtime) and analyze their pairwise correlations to understand market baselines[cite: 22].
-2.  [cite_start]**Market Segmentation:** Identify distinct market segments through unsupervised clustering to see if "success" has different definitions (e.g., Viral Hit vs. Premium Niche)[cite: 23].
+
+1.  **Exploratory Analysis:** Visualize the distribution of core metrics (price, ownership, playtime) and analyze their pairwise correlations to understand market baselines.
+
+2.  **Market Segmentation:** Identify distinct market segments through unsupervised clustering to see if "success" has different definitions (e.g., Viral Hit vs. Premium Niche).
+
 3.  **Content Impact:** Determine if specific game tags (genres/themes) serve as predictors for financial success or player retention.
 
 ### 1.3 Data Description
-The dataset was rigorously constructed by combining data from two primary sources:
-1.  **SteamSpy API:** To retrieve estimated ownership and player statistics.
-2.  [cite_start]**Web Scraping:** To extract detailed store page metadata from Steam[cite: 29].
 
-The final dataset includes over **28,000 games** with 18 commercial-related variables. [cite_start]Key variables include `price`, `discount`, `overall_reviews` (positive/negative counts), `average_playtime`, `developer`, `release_date`, and a rich set of user-defined `tags`[cite: 30].
+The dataset was rigorously constructed by combining data from two primary sources:
+
+1.  **SteamSpy API:** To retrieve estimated ownership and player statistics.
+
+2.  **Web Scraping:** To extract detailed store page metadata from Steam.
+
+The final dataset includes over **28,000 games** with 18 commercial-related variables. Key variables include `price`, `discount`, `overall_reviews` (positive/negative counts), `average_playtime`, `developer`, `release_date`, and a rich set of user-defined `tags`.
 
 ### 1.4 Methodology, Paradigms, and Technical Challenges
-[cite_start]This project demonstrates the effective integration of two major data science paradigms[cite: 26]:
+
+This project demonstrates the effective integration of two major data science paradigms:
+
 * **Functional Programming:** Utilized for creating robust, reusable data cleaning and transformation pipelines, ensuring that our preprocessing steps are consistent and reproducible.
+
 * **Machine Learning:** Applied for **K-Means Clustering** to segment games based on performance, and **Principal Component Analysis (PCA)** to reduce the dimensionality of game tags for feature extraction.
 
 **Technical Challenges:**
-A significant challenge was handling the **"heavy tail" distribution** inherent to the gaming market. [cite_start]The data is extremely right-skewed: a vast number of games have near-zero ownership, while a tiny fraction of "outliers" capture the majority of the market share[cite: 38]. [cite_start]To address this, we applied **log-transformations** to scale metrics (like ownership and playtime) and implemented robust outlier management strategies to ensure our statistical models remained valid[cite: 42].
+
+A significant challenge was handling the **"heavy tail" distribution** inherent to the gaming market. The data is extremely right-skewed: a vast number of games have near-zero ownership, while a tiny fraction of "outliers" capture the majority of the market share. To address this, we applied **log-transformations** to scale metrics (like ownership and playtime) and implemented robust outlier management strategies to ensure our statistical models remained valid.
 
 ---
 
@@ -48,19 +56,29 @@ A significant challenge was handling the **"heavy tail" distribution** inherent 
 We began with a comprehensive Exploratory Data Analysis (EDA) to understand the basic distributions of our variables and the relationships between economic and engagement metrics.
 
 ### 2.1 The State of the Market: Saturation and Skew
-[cite_start]Visualizing game releases over time confirms an **explosive growth** in the sheer volume of titles released in the past decade[cite: 37]. However, the distribution of success is highly unequal. The market is characterized by a "winner-takes-all" dynamic:
-* **Price & Ownership:** The data is heavily right-skewed. [cite_start]The majority of titles are low-priced or free with limited player bases[cite: 39].
-* [cite_start]**Concentrated Success:** Commercial success (defined by high ownership and concurrent users) is concentrated among a small percentage of top-tier titles[cite: 40].
+
+Visualizing game releases over time confirms an **explosive growth** in the sheer volume of titles released in the past decade. However, the distribution of success is highly unequal. The market is characterized by a "winner-takes-all" dynamic:
+
+* **Price & Ownership:** The data is heavily right-skewed. The majority of titles are low-priced or free with limited player bases.
+
+* **Concentrated Success:** Commercial success (defined by high ownership and concurrent users) is concentrated among a small percentage of top-tier titles.
 
 ### 2.2 Economic & Engagement Dynamics
+
 Our correlation analysis revealed several counter-intuitive insights regarding how price and engagement interact:
-* [cite_start]**Engagement Drives Scale:** Log-scaled engagement metrics (Playtime, Owners, CCU) exhibit strong positive correlations, confirming that player retention is a key driver of scale[cite: 42].
-* [cite_start]**The Price-Volume Relationship:** Contrary to standard supply/demand curves, higher-priced games generally command *greater* median ownership. This suggests that players associate higher prices with higher quality ("Premium" titles), whereas low prices often signal "shovelware" in this specific market.
-* [cite_start]**Value Perception:** We observed that **Price per Hour** drops sharply as average playtime increases. Successful games maximize value by offering extensive gameplay relative to their cost.
+
+* **Engagement Drives Scale:** Log-scaled engagement metrics (Playtime, Owners, CCU) exhibit strong positive correlations, confirming that player retention is a key driver of scale.
+
+* **The Price-Volume Relationship:** Contrary to standard supply/demand curves, higher-priced games generally command *greater* median ownership. This suggests that players associate higher prices with higher quality ("Premium" titles), whereas low prices often signal "shovelware" in this specific market.
+
+* **Value Perception:** We observed that **Price per Hour** drops sharply as average playtime increases. Successful games maximize value by offering extensive gameplay relative to their cost.
 
 ### 2.3 The "Satisfaction Paradox"
-[cite_start]Perhaps the most critical finding from our EDA is that **player satisfaction is decoupled from market scale**.
-* [cite_start]**Ubiquitous High Ratings:** High positive review ratios (75–90%) are common across all price bands and ownership levels[cite: 47, 89].
+
+Perhaps the most critical finding from our EDA is that **player satisfaction is decoupled from market scale**.
+
+* **Ubiquitous High Ratings:** High positive review ratios (75–90%) are common across all price bands and ownership levels.
+
 * **The Conclusion:** This indicates that a "good game" (high ratings) does not guarantee a "successful game" (high sales). A niche indie game and a massive blockbuster can have identical review scores but vastly different commercial outcomes. 
 
 ### 2.4 
@@ -99,6 +117,7 @@ To make these insights accessible, we developed two interactive data products:
 We have ensured full transparency and reproducibility of our work. The entire codebase, including data collection scripts (API fetching and web scraping), data cleaning pipelines, and analysis notebooks, is hosted on our GitHub repository.
 
 * **Code & Data Availability:** All source code and processed datasets are organized in the repository, allowing anyone to replicate our analysis from scratch.
+
 * **Repository Link:** [https://github.com/Sprchoir/Steam_analysis](https://github.com/Sprchoir/Steam_analysis)
 
 ### 5.2 Functionality
@@ -106,8 +125,11 @@ We have ensured full transparency and reproducibility of our work. The entire co
 The project successfully delivers two fully functional data analytic products that work as intended, demonstrating a seamless integration of **Functional Programming** and **Machine Learning** paradigms.
 
 * **Pipeline Integration:** The data processing pipeline effectively transforms raw, unstructured data (from SteamSpy and scraping) into structured formats suitable for both statistical modeling and interactive visualization.
+
 * **Component Performance:**
+
     1.  **Steam Game Explorer (Dashboard):** A Shiny-based application that functions robustly as a search and discovery tool, allowing users to query specific game metrics dynamically.
+    
     2.  **Analysis Website:** A deployed Quarto website that functions as the narrative backbone, correctly rendering complex visualizations (like PCA biplots and Cluster visualizations) to present our findings on market segmentation.
 
 ### 5.3 Usability and Documentation
@@ -115,8 +137,10 @@ The project successfully delivers two fully functional data analytic products th
 We prioritized user experience and clarity to ensure the product is easy to read and use.
 
 * **Documentation:** The repository includes a comprehensive `README.md` that summarizes key project details, team members, and instructions for running the code.
+
 * **Usability:**
     * The **Shiny Dashboard** features an intuitive interface designed for non-technical users to explore game data without needing to write code.
+    
     * The **Quarto Report** is structured logically (Introduction $\rightarrow$ EDA $\rightarrow$ Clustering $\rightarrow$ Conclusion), making the complex statistical analysis accessible and easy to follow for readers.
 
 ### 5.4 Originality and Complexity
@@ -124,4 +148,5 @@ We prioritized user experience and clarity to ensure the product is easy to read
 This project addresses a non-trivial statistical problem with creativity, going beyond simple descriptive statistics.
 
 * **Statistical Complexity:** We tackled the challenge of highly skewed data ("heavy tails" in price and ownership) by applying advanced techniques like **K-Means Clustering** and **Principal Component Analysis (PCA)**. This allowed us to identify hidden patterns, such as the distinction between "Viral Hits" (Action-driven) and "Premium Titles" (Narrative-driven).
+
 * **Creative Approach:** Instead of viewing success solely through sales figures, we innovatively decoded the "DNA of Success" by synthesizing economic behavior with content analysis (game tags). This multi-dimensional approach offers unique insights into the digital marketplace that standard analytics often miss.

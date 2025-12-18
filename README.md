@@ -12,11 +12,11 @@ An in-depth statistical analysis of over 28,000 Steam games, utilizing Data Scie
 ## 📖 Project Overview
 The video game market is saturated, with thousands of games released annually. This project investigates the connection between economic behavior (price, ownership), user engagement (playtime, reviews), and game content (tags).
 
-**Key Goals:**
+**Key Goals**
 1.  **Exploratory Analysis:** Visualize the distribution of prices, ownership, and review scores.
 2.  **Clustering:** Use Unsupervised Learning (K-Means) to segment the market into distinct performance tiers.
 
-### Key Findings
+**Key Findings**
 * **Retention drives Scale:** Long-term engagement is the strongest predictor of commercial value.
 * **Two Paths to Success:** We identified a "Viral Hit" formula (Action-heavy, high mechanics) and a "Premium" formula (Narrative-heavy, high price justification).
 * **Review Decoupling:** High review scores are common across all price points and do not strongly correlate with market size.
@@ -34,7 +34,6 @@ This project demonstrates the integration of **Functional Programming** and **Ma
 
 * **Language:** R
 * **Data Collection:** SteamSpy API + Web Scraping
-* **Analysis:** `tidyverse` (Data manipulation), `stats` (Clustering/PCA)
 * **Visualization:** `ggplot2`
 * **Deployment:** Quarto (Static Site) + Shiny (Interactive Dashboard)
 
