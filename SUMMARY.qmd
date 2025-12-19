@@ -106,6 +106,7 @@ Retention patterns reinforce that engagement depth drives active scale. Release 
 ---
 
 ## 3. Clustering Analysis
+
 This section uses unsupervised methods to move beyond genre labels and segment Steam games by how they behave in the market. We first cluster titles using numeric performance indicators that proxy monetization, engagement, sentiment, and scale. We then translate noisy user tags into a small set of continuous “content scores” via PCA, and finally link the market segments to these content dimensions to surface repeatable success patterns.
 
 In Stage 1, k means clustering on standardized performance features produces five interpretable market segments. The results suggest a strongly stratified ecosystem: a small “hit” segment accounts for extreme engagement and scale, while most titles sit in a crowded core where quality (review sentiment) becomes the main separator between respected indie releases and low performing games. We validate the segmentation by checking whether the segments align with intuitive tag signatures.
