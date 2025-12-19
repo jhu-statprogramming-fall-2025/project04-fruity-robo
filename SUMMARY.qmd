@@ -3,6 +3,8 @@ title: "Summary of Steam Game Analysis"
 subtitle: "Final Project Report"
 author: "Fruity Robo"
 date: "2025-12-18"
+execute:
+  echo: false
 ---
 
 ## 1. Introduction
@@ -53,25 +55,22 @@ A significant challenge was handling the **"heavy tail" distribution** inherent 
 
 ## 2. Exploratory Data Analysis (EDA)
 
-We began with a comprehensive Exploratory Data Analysis (EDA) to understand the basic distributions of our variables and the relationships between economic and engagement metrics.
+We used EDA to map the overall market structure, then drilled into pricing, engagement, sentiment, and content patterns.
 
 ### 2.1 The State of the Market: Saturation and Skew
 
-Visualizing game releases over time confirms an **explosive growth** in the sheer volume of titles released in the past decade. However, the distribution of success is highly unequal. The market is characterized by a "winner-takes-all" dynamic:
+Visualizing the data confirms **explosive growth** in releases and a strongly unequal distribution of success. The market shows a clear "winner-takes-all" dynamic:
 
 * **Price & Ownership:** The data is heavily right-skewed. The majority of titles are low-priced or free with limited player bases.
 
 * **Concentrated Success:** Commercial success (defined by high ownership and concurrent users) is concentrated among a small percentage of top-tier titles.
 
-### 2.2 Economic & Engagement Dynamics
+### 2.2 Engagement Structure
 
-Our correlation analysis revealed several counter-intuitive insights regarding how price and engagement interact:
+Correlation patterns show that most engagement and popularity metrics move together.
 
-* **Engagement Drives Scale:** Log-scaled engagement metrics (Playtime, Owners, CCU) exhibit strong positive correlations, confirming that player retention is a key driver of scale.
-
-* **The Price-Volume Relationship:** Contrary to standard supply/demand curves, higher-priced games generally command *greater* median ownership. This suggests that players associate higher prices with higher quality ("Premium" titles), whereas low prices often signal "shovelware" in this specific market.
-
-* **Value Perception:** We observed that **Price per Hour** drops sharply as average playtime increases. Successful games maximize value by offering extensive gameplay relative to their cost.
+* **Engagement is the common driver:** Log-scaled playtime, owners, reviews, and CCU are highly collinear, indicating a shared "scale" dimension behind market success.
+* **Reviews track audience size:** Positive and negative review counts rise together, reflecting volume effects rather than sentiment shifts.
 
 ### 2.3 The "Satisfaction Paradox"
 
@@ -81,17 +80,32 @@ Perhaps the most critical finding from our EDA is that **player satisfaction is 
 
 * **The Conclusion:** This indicates that a "good game" (high ratings) does not guarantee a "successful game" (high sales). A niche indie game and a massive blockbuster can have identical review scores but vastly different commercial outcomes. 
 
-### 2.4 
+### 2.4 Pricing, Discounting, and Demand
 
-### 2.5
+We tested whether lower prices reliably translate into larger audiences and whether discounts create scale.
 
-### 2.6
+* **Price is not a barrier to scale:** Higher-priced games often show higher median ownership and CCU, consistent with a premium-quality signal.
+* **Discounts amplify existing winners:** Deep discounts appear mostly on large-audience titles; discount depth alone has weak explanatory power.
+
+### 2.5 Value, Playtime, and Satisfaction
+
+We examined perceived value (price per hour) alongside engagement and sentiment.
+
+* **Value rises with engagement:** Price per hour falls as playtime increases, showing that long-engagement titles deliver stronger cost efficiency.
+* **A satisfaction sweet spot:** Review positivity peaks at moderate playtime and flattens or dips at extremes.
+* **Price bands behave similarly:** The playtime–sentiment curve is stable across price tiers, implying engagement matters more than list price.
+
+### 2.6 Retention, Release Timing, and Tag Contrasts
+
+Retention patterns reinforce that engagement depth drives active scale. Release timing and tags expose structural differences in market positioning.
+
+* **Retention links to scale, not sentiment:** Recent play share correlates with CCU, while review ratios remain flat across retention levels.
+* **Cohort effects persist:** Median ownership peaks around 2012–2014 and declines afterward; recent releases show higher prices alongside higher hourly value.
+* **Tag heterogeneity is strong:** Multiplayer leads in scale and playtime, Story Rich/RPG/Strategy cluster at higher price and depth, and 2D/Pixel Graphics/Colorful deliver strong sentiment at lower prices.
 
 ---
 
 ## 3. Clustering Analysis
-
-
 ---
 
 ## 4. Conclusion & Data Products
